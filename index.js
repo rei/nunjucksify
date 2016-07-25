@@ -1,5 +1,5 @@
 var through = require( "through" );
-var nunjucks = require( "nunjucks-no-chokidar" );
+var nunjucks = require( "nunjucks" );
 var path = require( "path" );
 
 module.exports = function( file, opts ) {
