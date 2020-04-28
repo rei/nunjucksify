@@ -1,5 +1,5 @@
 var through = require( "through" );
-var nunjucks = require( "nunjucks" );
+var nunjucks = require( "@rei/nunjucks" );
 var path = require( "path" );
 
 module.exports = function( file, opts ) {
@@ -22,7 +22,7 @@ module.exports = function( file, opts ) {
 	function end() {
 		var compiledTemplate = '';
 
-		compiledTemplate += 'var nunjucks = require( "nunjucks" );\n';
+		compiledTemplate += 'var nunjucks = require( "@rei/nunjucks" );\n';
 		compiledTemplate += 'var env = nunjucks.env || new nunjucks.Environment();\n';
 
 		var nunjucksCompiledStr;
@@ -46,7 +46,7 @@ module.exports = function( file, opts ) {
 		}
 
 		compiledTemplate += 'var obj = (function () {' + nunjucksCompiledStr + '})();\n';
-		compiledTemplate += 'module.exports = require( "nunjucksify/runtime-shim" )(nunjucks, env, obj, require);\n';
+		compiledTemplate += 'module.exports = require( "@rei/nunjucksify/runtime-shim" )(nunjucks, env, obj, require);\n';
 
 		this.queue( compiledTemplate );
 		this.queue( null );
